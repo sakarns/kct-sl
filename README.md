@@ -1,2 +1,2 @@
 # kct-sl
-this is all the project from SL/ BCA , KCT. 
+this is the project code from SL/ BCA , KCT provided by teacher. 
