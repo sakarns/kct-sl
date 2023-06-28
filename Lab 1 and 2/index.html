@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sakar</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            /* background-color: #000000; */
+        }
+
+        #s1, #s2{
+            color: blue;
+            margin: 10px;
+            padding: 10px; 
+            border: 5px solid red;
+            border-radius: 13%;
+            text-align: center;
+            background-color: #e4e3a9;
+
+        }
+
+        div{
+            margin: 10px;
+            padding: 10px;
+            background-color: #9674f1;
+            border:5px solid black;
+            border-radius: 10%;
+        }
+
+        .container2{
+            margin: 10px;
+            padding: 10px;
+
+        }
+
+        #s4{
+            margin-top: 10px;
+            padding: 5px; 
+            background-color: #ff0000;
+            color: rgb(0, 72, 255);  
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1 id="s1">Hi !!!.</h1>
+        <p  id="s2">It's my first Java Script Program.</p>
+    </div>
+    
+    <div class="container2">
+        <p id="s3">Event Handler: <br>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto explicabo consequatur, eligendi quasi inventore ut maiores sapiente quos ducimus cumque voluptatem, dignissimos iste quia labore.</p>
+        
+            <!-- Step:3 <button id="s4">Toogle</button> -->
+            <button id="s4" onclick="tooglepara( )">Toogle</button>
+    </div>
+
+<script>
+    let Alt="Hello !!!";
+
+document.getElementById("s1").innerText=Alt;
+
+//Step:1 
+// const btn = document.getElementById("s4");
+// btn.onclick= () => {
+//     let stat = document.getElementById("s3");
+//     if(stat.style.display != 'none')
+//         stat.style.display = 'none';
+//     else
+//     stat.style.display = 'block';
+// };
+
+// Step:2
+// const btn = document.getElementById("s4");
+// btn.addEventListener('click', tooglepara);
+// above functon ~
+
+// Step:3
+function tooglepara() {
+    let stat = document.getElementById("s3");
+        if(stat.style.display != 'none')
+            stat.style.display = 'none';
+        else
+        stat.style.display = 'block';
+}
+
+</script>
+
+</body>
+</html>

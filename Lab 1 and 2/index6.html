@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Interest Calculator</title>
+    <style>
+        form {
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        h1 {
+            font-size: 24px;
+            margin-top: 0;
+            text-align: center;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+
+        button[type="submit"],
+        button[type="reset"] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-right: 10px;
+        }
+
+        button[type="submit"]:hover,
+        button[type="reset"]:hover {
+            background-color: #45a049;
+        }
+
+        button[type="submit"]:focus,
+        button[type="reset"]:focus {
+            outline: none;
+            box-shadow: 0 0 5px #4CAF50;
+        }
+    </style>
+</head>
+<body>
+    <h1>Interest Calculator</h1>
+
+    <form>
+        <label for="principle">Principle:</label>
+        <input type="text" id="principle" required>
+
+        <label for="interestrate">Interest Rate:</label>
+        <input type="text" id="interestrate" required>
+
+        <label for="minterestamount">Monthly Interest Amount:</label>
+        <input type="text" id="minterestamount" disabled>
+
+        <label for="yinterestamount">Yearly Interest Amount:</label>
+        <input type="text" id="yinterestamount" disabled>
+
+        <button type="reset">Reset</button>
+        <button type="button" onclick="calculate()">Calculate</button>
+    </form>
+
+    <script>
+        function calculate() {
+            var pr = parseFloat(document.getElementById("principle").value);
+            var rate = parseFloat(document.getElementById("interestrate").value);
+
+            if (pr > 0 && rate > 0 ) {
+                var monthlyRate = rate / 1200;
+                var yearlyInterestAmount = pr * rate / 100;
+                var monthlyInterestAmount = pr * monthlyRate;
+                document.getElementById("minterestamount").value = monthlyInterestAmount.toFixed(2);
+                document.getElementById("yinterestamount").value = yearlyInterestAmount.toFixed(2);
+            }
+        }
+    </script>
+</body>
+</html>

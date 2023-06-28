@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>H.W</title>
+    <style>
+      * {
+        margin: 0px;
+        padding: 0px;
+      }
+      body {
+        background-color: #ffffff;
+        width: 50%;
+        margin: auto;
+        font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+          "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+      }
+
+      form {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+        font-family: Arial, sans-serif;
+        background-color: #bac58a;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+      }
+
+      h1 {
+        font-size: 24px;
+        margin-top: 0;
+      }
+
+      label {
+        display: block;
+        margin-bottom: 10px;
+        font-weight: bold;
+      }
+
+      input[type="text"],
+      input[type="date"] {
+        width: 100%;
+        padding: 10px;
+        border-radius: 4px;
+        border: 1px solid #ccc;
+        box-sizing: border-box;
+        font-size: 16px;
+        margin-bottom: 20px;
+      }
+
+      input[type="text"]:disabled {
+        background-color: #f5f5f5;
+      }
+
+      button[type="submit"] {
+        background-color: #4caf50;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 16px;
+        margin-bottom: 20px;
+      }
+
+      button[type="submit"]:hover {
+        background-color: #45a049;
+      }
+
+      input[type="text"]:focus,
+      input[type="date"]:focus,
+      button[type="submit"]:focus {
+        outline: none;
+        box-shadow: 0 0 5px #4caf50;
+      }
+      input[type="text"]::placeholder,
+      input[type="date"]::placeholder {
+        color: #ccc;
+      }
+
+      label[for="current-date"] {
+        font-style: italic;
+        font-size: 14px;
+      }
+
+      label[for="expDate"] {
+        margin-top: 10px;
+      }
+
+      #totalCharge {
+        font-weight: bold;
+        font-size: 18px;
+        margin-top: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <form>
+      <h1>Vehicle Blue Book Renewal</h1>
+
+      <label for="current-date">Current Date:</label>
+      <input type="text" id="current-date" readonly /> <br />
+
+      <label for="expDate">Date Of Expire: </label>
+      <input type="date" id="expDate" required autofocus /><br />
+
+      <button type="submit" id="done">Calculate</button><br />
+
+      <label for="renewalFee">Renewal Fee: </label>
+      <input
+        type="text"
+        id="renewalFee"
+        placeholder="Renewal Fee"
+        readonly
+      /><br />
+
+      <label for="lateRenewalPenalty">Late Renewal Penalty: </label>
+      <input
+        type="text"
+        id="lateRenewalPenalty"
+        placeholder="Late Renewal Penalty"
+        readonly
+      /><br />
+
+      <label for="penaltyFee">Penalty Fee: </label>
+      <input
+        type="text"
+        id="penaltyFee"
+        placeholder="Penalty Fee"
+        readonly
+      /><br />
+
+      <label for="insurance">Insurance Charge (/yr): </label>
+      <input
+        type="text"
+        id="insurance"
+        placeholder="Insurance"
+        readonly
+      /><br />
+
+      <label for="totalCharge">Total Renewal Charge: </label>
+      <input
+        type="text"
+        id="totalCharge"
+        placeholder="Total Renewal Charge"
+        readonly
+      /><br />
+    </form>
+
+    <script>
+      document.getElementById("current-date").value =
+        new Date().toLocaleDateString();
+      // Get references to the form elements
+      const expDateInput = document.getElementById("expDate");
+      const renewalFeeInput = document.getElementById("renewalFee");
+      var lateRenewalPenaltyInput =
+        document.getElementById("lateRenewalPenalty");
+      const penaltyFeeInput = document.getElementById("penaltyFee");
+      const insuranceInput = document.getElementById("insurance");
+      const totalChargeInput = document.getElementById("totalCharge");
+      const submitButton = document.getElementById("done");
+
+      // Add an event listener to the submit button
+      submitButton.addEventListener("click", calculateTotalCharge);
+
+      function calculateTotalCharge(event) {
+        event.preventDefault();
+
+        const expireDate = new Date(expDateInput.value);
+        const currentDate = new Date();
+        const daysDiff = Math.round(
+          (currentDate - expireDate) / (1000 * 60 * 60 * 24)
+        );
+
+        if (daysDiff >= 0 && daysDiff <= 30) {
+          valueIs = 0;
+        } else if (daysDiff > 30 && daysDiff <= 90) {
+          valueIs = 50;
+        } else if (daysDiff > 90 && daysDiff <= 180) {
+          valueIs = 100;
+        } else if (daysDiff > 180 && daysDiff <= 270) {
+          valueIs = 150;
+        } else if (daysDiff > 270 && daysDiff <= 365) {
+          valueIs = 200;
+        } else if (daysDiff > 365) {
+          valueIs = 500;
+        } else {
+          valueIs = 0;
+        }
+        renewalFeeInput.value = `Rs.${1200}`;
+        lateRenewalPenaltyInput.value = `${daysDiff} days `;
+        penaltyFeeInput.value = `Rs. ${valueIs}`;
+        insuranceInput.value = `Rs. ${1000}`;
+        totalChargeInput.value = `Rs. ${1200 + 1000 + valueIs}`;
+      }
+    </script>
+  </body>
+</html>

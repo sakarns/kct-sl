@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class 6</title>
+</head>
+<style>
+    table, th, td {
+        box-sizing: border-box;
+        border: 1px solid black;
+        border-collapse: collapse;
+        text-align: center;
+    }
+</style>
+<body>
+
+    <h2>Attendance</h2>
+
+    <table style="width:100%">
+        <tr>
+            <th>S.N.</th>
+            <th>Name</th>
+            <th>Attendance</th>
+            <th>Remarks</th>
+        </tr>
+        <tr>
+            <td>1.</td>
+            <td>Sakar Mainali</td>
+            <td><input class="cBox" type="checkbox" onchange="attend('1')"></td>
+            <td class="remarks"></td>
+        </tr>
+        <tr>
+            <td>2.</td>
+            <td>Arun Karki</td>
+            <td><input class="cBox" type="checkbox" onchange="attend('2')"></td>
+            <td class="remarks"></td>
+        </tr>
+        <tr>
+            <td>3.</td>
+            <td>Sagar Khadka</td>
+            <td><input class="cBox" type="checkbox" onchange="attend('3')"></td>
+            <td class="remarks"></td>
+        </tr>
+        <tr>
+            <td>4.</td>
+            <td>Umesh Tamang</td>
+            <td><input class="cBox" type="checkbox" onchange="attend('4')"></td>
+            <td class="remarks"></td>
+        </tr>
+    </table>
+
+    <script>
+        function attend(sn) {
+            const cBoxClick = document.getElementsByClassName('cBox')[sn-1];
+            const remarks = document.getElementsByClassName('remarks')[sn-1];
+
+            if (cBoxClick.checked) {
+                remarks.innerHTML = "Present";
+                remarks.style.backgroundColor = "yellow";
+            } else {
+                remarks.innerHTML = "Absent";
+                remarks.style.backgroundColor = "red";
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>class 4</title>
+    <style>
+        form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        font-size: 18px;
+        margin-top: 20px;
+        }
+
+        label {
+        margin-bottom: 5px;
+        }
+
+        input {
+        padding: 10px;
+        margin-bottom: 15px;
+        border: 2px solid #ccc;
+        border-radius: 5px;
+        }
+
+        button {
+        padding: 10px 15px;
+        margin-bottom: 15px;
+        border-radius: 5px;
+        border: none;
+        background-color: #4CAF50;
+        color: white;
+        cursor: pointer;
+        }
+
+        button[type=reset] {
+        background-color: #f44336;
+        }
+
+        button:hover {
+        background-color: #3e8e41;
+        }
+
+        input[disabled] {
+        background-color: #eee;
+        cursor: not-allowed;
+        }
+
+    </style>
+</head>
+<body>
+    <form action="#">
+        <label>Cost Price</label>
+        <input type="number" id="costprice" placeholder="Cost Price"> <br>
+        <label>Selling Price</label>
+        <input type="number" id="sellingprice" placeholder="Selling Price" > <br>
+        <label>Quantity</label>
+        <input type="number" id="qnty" placeholder="Sales Quantity"> <br>
+        <label>Tender Amount: </label>
+        <input type="text" id="tenderamount" disabled> <br>
+        <label>Profit Amount</label>
+        <input type="text" id="profitamount" disabled> <br>
+
+        <button type="reset">Reset</button>
+        <button onclick="calculateTenderAmount()">Calculate Tender Amount</button>
+        <button onclick="calculateTotalProfit()">Calculate Total Profit</button>
+    </form>
+
+    <script>
+        function calculateTenderAmount(){
+            var cstprice = document.getElementById("costprice").value;
+            var qty = document.getElementById("qnty").value;
+    
+            if (cstprice != 0 && qty > 0 )
+                document.getElementById("tenderamount").value = cstprice * qty;
+            else
+                return;
+        }
+    
+        function calculateTotalProfit(){
+            var cstprice = document.getElementById("costprice").value;
+            var sellingprice = document.getElementById("sellingprice").value;
+            var qty = document.getElementById("qnty").value;
+    
+            if (cstprice > 0 && sellingprice > 0 && qty > 0)
+                document.getElementById("profitamount").value = (sellingprice - cstprice) * qty;
+            else
+                    return;
+        }
+    </script>
+    
+</body>
+</html>

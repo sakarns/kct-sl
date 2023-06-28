@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Handler</title>
+</head>
+<body>
+    <div class="container">
+        <h1 id="mytitle">Hi !!!.</h1>
+        <p  id="mypara">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum, atque.</p>
+
+        <button id="btntoogle">Toogle</button>
+    </div>
+    <script>
+        const btn = document.getElementById("btntoogle");
+        const ttl = document.getElementById("mytitle");
+        const para = document.getElementById("mypara");
+        btn.onclick= () => {
+               if(para.style.display != 'none')
+                para.style.display = 'none';
+            else
+            para.style.display = 'block';
+        }
+
+        btn.onclick = () => {
+            if(ttl.style.display != 'none')
+                ttl.style.display = 'none';
+            else
+            ttl.style.display = 'block';
+        } 
+    </script>
+</body>
+</html>
