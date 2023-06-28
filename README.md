@@ -1,2 +1,2 @@
-# jubilant-octo-disco-main
-this is all the project from SL/ BCA , KCT. 
+# kct-sl
+this is the project code from SL/ BCA , KCT provided by teacher. 
