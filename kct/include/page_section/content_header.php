@@ -14,7 +14,7 @@
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
       <li class="nav-item">
-        <a class="nav-link" href="/kct/logout.php" role="button">
+        <a class="nav-link" href="../kct/logout.php" role="button">
           <i class="fas fa-sign-out-alt"></i>
         </a>
       </li>     

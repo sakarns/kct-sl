@@ -1,10 +1,10 @@
 <?php
 
-$servername = "localhost"; 
-$username = "root"; 
+$servername = "localhost";
+$username = "root";
 $password = "";
 $database = "employee_mgmt";
-$conn = mysqli_connect($servername, 
+$conn = mysqli_connect($servername,
          $username, $password, $database);
 //var_dump($conn);
 
