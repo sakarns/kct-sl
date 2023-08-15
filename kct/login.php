@@ -1,42 +1,39 @@
 <?php
 session_start();
-ini_set('display_errors',1);
+ini_set('display_errors', 1);
 include_once('config/connection.php');
 $exists = false;
 $wrongPswd = false;
 $userId = '';
-if($_SERVER['REQUEST_METHOD']=='POST'){
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   // $username = mysqli_real_escape_string($conn,$_POST["username"]); 
   // $password = mysqli_real_escape_string($conn,$_POST["password"]); 
 
-  $username = $_POST["username"]; 
-  $password = $_POST["password"]; 
+  $username = $_POST["username"];
+  $password = $_POST["password"];
 
-  $sql = "Select * from users where username='$username'";    
-  $result = mysqli_query($conn, $sql);    
-  $num = mysqli_num_rows($result); 
+  $sql = "Select * from users where username='$username'";
+  $result = mysqli_query($conn, $sql);
+  $num = mysqli_num_rows($result);
   // var_dump($num);
-  if($num == 0) {
+  if ($num == 0) {
     $exists = "User not available";
-  }
-  else{
+  } else {
     $sql = "Select id from users where password='$password'";
     $result = mysqli_query($conn, $sql);
     $num = mysqli_num_rows($result);
-    
+
     //var_dump(count($row));
-    if($num > 0){  
-      while($row = mysqli_fetch_array($result)){
+    if ($num > 0) {
+      while ($row = mysqli_fetch_array($result)) {
         $userId = $row['id'];
-      }    
-     $_SESSION['username'] = $username;
-     $_SESSION['userId'] = $userId;
+      }
+      $_SESSION['username'] = $username;
+      $_SESSION['userId'] = $userId;
       header('location:dashboard.php');
-    }
-    else{
+    } else {
       $wrongPswd = "Password mismatch! please try again";
     }
-    
   }
 }
 
@@ -62,28 +59,28 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
 
 <body class="hold-transition login-page">
   <?php
-  if($exists) {
+  if ($exists) {
     echo ' <div class="alert alert-danger 
         alert-dismissible fade show" role="alert">
 
-    <strong>Error!</strong> '. $exists.'
+    <strong>Error!</strong> ' . $exists . '
     <button type="button" class="close" 
         data-dismiss="alert" aria-label="Close"> 
         <span aria-hidden="true">×</span> 
     </button>
-   </div> '; 
- }
- if($wrongPswd) {
-  echo ' <div class="alert alert-danger 
+   </div> ';
+  }
+  if ($wrongPswd) {
+    echo ' <div class="alert alert-danger 
       alert-dismissible fade show" role="alert">
 
-  <strong>Error!</strong> '. $wrongPswd.'
+  <strong>Error!</strong> ' . $wrongPswd . '
   <button type="button" class="close" 
       data-dismiss="alert" aria-label="Close"> 
       <span aria-hidden="true">×</span> 
   </button>
- </div> '; 
-}
+ </div> ';
+  }
   ?>
 
   <div class="login-box">

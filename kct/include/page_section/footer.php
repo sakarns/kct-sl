@@ -1,53 +1,85 @@
 <footer class="main-footer">
-      <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong>
-      All rights reserved.
-      <div class="float-right d-none d-sm-inline-block">
-        <b>Version</b> 3.2.0
-      </div>
-    </footer>
-
-    <!-- Control Sidebar -->
-    <aside class="control-sidebar control-sidebar-dark">
-      <!-- Control sidebar content goes here -->
-    </aside>
-    <!-- /.control-sidebar -->
+  <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong>
+  All rights reserved.
+  <div class="float-right d-none d-sm-inline-block">
+    <b>Version</b> 3.2.0
   </div>
-  <!-- ./wrapper -->
+</footer>
+
+<!-- Control Sidebar -->
+<aside class="control-sidebar control-sidebar-dark">
+  <!-- Control sidebar content goes here -->
+</aside>
+<!-- /.control-sidebar -->
+</div>
+<!-- ./wrapper -->
 
 
-  <!-- jQuery -->
-  <script src="../kct/plugins/jquery/jquery.min.js"></script>
-  
-  <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+<!-- jQuery -->
+<script src="../kct/plugins/jquery/jquery.min.js"></script>
 
-  <!-- Bootstrap 4 -->
-  <script src="../kct/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <!-- ChartJS -->
-  <script src="../kct/plugins/chart.js/Chart.min.js"></script>
-  
+<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
 
-  
-  <!-- jQuery Knob Chart -->
-  <script src="../kct/plugins/jquery-knob/jquery.knob.min.js"></script>
-  <!-- daterangepicker -->
-  <script src="../kct/plugins/moment/moment.min.js"></script>
-  <script src="../kct/plugins/daterangepicker/daterangepicker.js"></script>
-  <!-- Tempusdominus Bootstrap 4 -->
-  <script src="../kct/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
-  <!-- Summernote -->
-  <script src="../kct/plugins/summernote/summernote-bs4.min.js"></script>
-  <!-- overlayScrollbars -->
-  <script src="../kct/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
-  <!-- AdminLTE App -->
-  <script src="../kct/dist/js/adminlte.js"></script>
-  
+<!-- Bootstrap 4 -->
+<script src="../kct/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- ChartJS -->
+<script src="../kct/plugins/chart.js/Chart.min.js"></script>
 
-  
-  <script>
-  $(document).on('click','#mdl_submit',function(){
+
+
+<!-- jQuery Knob Chart -->
+<script src="../kct/plugins/jquery-knob/jquery.knob.min.js"></script>
+<!-- daterangepicker -->
+<script src="../kct/plugins/moment/moment.min.js"></script>
+<script src="../kct/plugins/daterangepicker/daterangepicker.js"></script>
+<!-- Tempusdominus Bootstrap 4 -->
+<script src="../kct/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
+<!-- Summernote -->
+<script src="../kct/plugins/summernote/summernote-bs4.min.js"></script>
+<!-- overlayScrollbars -->
+<script src="../kct/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+<!-- AdminLTE App -->
+<script src="../kct/dist/js/adminlte.js"></script>
+
+
+
+<script>
+  $(document).on('click', '#mdl_submit', function() {
     let mdlUsername = document.getElementById('mdl_username').value;
     let mdlPassword = document.getElementById('mdl_password').value;
     let mdlConfirm = document.getElementById('mdl_confirm_password').value;
     alert(mdlUsername);
   });
-  </script>
+</script>
+
+<script>
+  $(document).ready(function() {
+    var mainContent = $('#userTable tbody').html();
+    $(document).on('click', '#goToProfile', function() {
+      var user_id = $(this).attr('data-id');
+      var user_name = $(this).attr('data-user');
+      sessionStorage.setItem('empAcUserId', user_id);
+      sessionStorage.setItem('empAcUsername', user_name);
+    });
+    $('#user_search').keyup(function() {
+      var input = $(this).val();
+      if (input != "") {
+        $.ajax({
+          url: "admin/user_ajax_search.php",
+          method: "POST",
+          data: {
+            input: input
+          },
+          success: function(data) {
+            $('#userTable tbody tr').empty();
+            $('#userTable tbody').append(data);
+
+          }
+        });
+      } else {
+        // Display the main page content when the input is empty
+        $('#userTable tbody').html(mainContent);
+      }
+    });
+  });
+</script>
