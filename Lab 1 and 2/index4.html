@@ -1,99 +1,114 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Class 3</title>
-</head>
-<body>
-    <button id="changeBg">Click to change background color ! </button>
-    <h3>Hover to change text </h3>
-    <button id="hdChangeBtnBg">Mouse over to change button background color</button>
+  </head>
+  <body>
+    <button id="changeBg">Click to change background color !</button>
+    <h3>Hover to change text</h3>
+    <button id="hdChangeBtnBg">
+      Mouse over to change button background color
+    </button>
     <h5 id="hdChangeTextSize"></h5>
     <div>
-        <img id="imgChangeSize" onmouseover="bigImg()" onmouseover = "normalImg()" src="/Image/logo.png" alt="Logo" width="100px" height="100px">
+      <img
+        id="imgChangeSize"
+        onmouseover="bigImg()"
+        onmouseover="normalImg()"
+        src="/Image/logo.png"
+        alt="Logo"
+        width="100px"
+        height="100px"
+      />
     </div>
     <!--Image resize second technique-->
     <div>
-        <img onmouseover="ImgBig(this)" onmouseover = "imgDefault(this)" src="/Image/logo.png" alt="Logo" width="100px" height="100px">
+      <img
+        onmouseover="ImgBig(this)"
+        onmouseover="imgDefault(this)"
+        src="/Image/logo.png"
+        alt="Logo"
+        width="100px"
+        height="100px"
+      />
     </div>
     <div>
-        <form name="myform">
-            <label for="#">First Name</label> <br>
-            <input type="text" placeholder="First Name"> <br>
-            <label for="#">Last Name</label> <br>
-            <input type="text" placeholder="Last Name"> <br>
-            <label for="#">Citizenship</label>
-            <button type="submit"> Submit</button>
-            <button type="reset">Reset</button>
-        </form>
+      <form name="myform">
+        <label for="#">First Name</label> <br />
+        <input type="text" placeholder="First Name" /> <br />
+        <label for="#">Last Name</label> <br />
+        <input type="text" placeholder="Last Name" /> <br />
+        <label for="#">Citizenship</label>
+        <button type="submit">Submit</button>
+        <button type="reset">Reset</button>
+      </form>
     </div>
 
     <script>
-        //bg color change 
-        let btn = document.querySelector("#changeBg");
+      //bg color change
+      let btn = document.querySelector("#changeBg");
 
-        btn.addEventListener('click',() => {
-            let r = randomNumber(255);
-            let g = randomNumber(255);
-            let b = randomNumber(255);
-            let rndCol = `rgb(${r},${g},${b})`;
-            document.body.style.backgroundColor = rndCol;
+      btn.addEventListener("click", () => {
+        let r = randomNumber(255);
+        let g = randomNumber(255);
+        let b = randomNumber(255);
+        let rndCol = `rgb(${r},${g},${b})`;
+        document.body.style.backgroundColor = rndCol;
+      });
 
-        });
+      function randomNumber(number) {
+        return Math.floor(Math.random() * (number + 1));
+      }
 
-        function randomNumber(number){
-            return Math.floor(Math.random() * (number +1));
-        }
+      // mouse hover/ mousehover  to change bg coloor
+      const hvr = document.querySelector("h3");
+      hvr.addEventListener("mouseover", function changeTextColor() {
+        hvr.style.color = "red";
+        hvr.style.curser = "pointer";
+      });
 
-        // mouse hover/ mousehover  to change bg coloor
-        const hvr = document.querySelector("h3");
-        hvr.addEventListener('mouseover', function changeTextColor(){
-            hvr.style.color = 'red';
-            hvr.style.curser = 'pointer'});
+      hvr.addEventListener("mouseout", function handleMouseOut() {
+        hvr.style.color = "black";
+      });
 
-        hvr.addEventListener('mouseout', function handleMouseOut(){
-                hvr.style.color ='black';
-        });
+      //mouse over to change button bg color
+      const mouseHvr = document.getElementById("hdChangeBtnBg");
+      mouseHvr.addEventListener("mouseover", () => {
+        mouseHvr.style.backgroundColor = "yellow";
+      });
 
-            //mouse over to change button bg color
-            const mouseHvr = document.getElementById("hdChangeBtnBg");
-            mouseHvr.addEventListener('mouseover', () => {
-                mouseHvr.style.backgroundColor = 'yellow';
-            });
-            
-            mouseHvr.addEventListener('mouseout', () => {
-                mouseHvr.style.backgroundColor = 'transparent';
-            });
+      mouseHvr.addEventListener("mouseout", () => {
+        mouseHvr.style.backgroundColor = "transparent";
+      });
 
-            //image 
+      //image
 
-            function bigImg() {
-                const imgBig = document.getElementsById("imgChangeSize");
-                imgBig.style.height = "196px";
-                imgBig.style.width = "256px";
-            }
+      function bigImg() {
+        const imgBig = document.getElementsById("imgChangeSize");
+        imgBig.style.height = "196px";
+        imgBig.style.width = "256px";
+      }
 
-            function normalImg() {
-                const imgDefault = document.getElementsById("imgChangeSize");
-                imgDefault.style.height = "100px";
-                imgDefault.style.width = "100px";
-            }
+      function normalImg() {
+        const imgDefault = document.getElementsById("imgChangeSize");
+        imgDefault.style.height = "100px";
+        imgDefault.style.width = "100px";
+      }
 
-            //image realize second technique
-            
-            function imgBig(x) {
-                x.style.height = "196px";
-                x.style.width = "256px";
-            }
+      //image realize second technique
 
-            function imgDefault(x) {
-                x.style.width = "100px";
-                x.style.height = "100px";
-            }
-            
-        
+      function imgBig(x) {
+        x.style.height = "196px";
+        x.style.width = "256px";
+      }
+
+      function imgDefault(x) {
+        x.style.width = "100px";
+        x.style.height = "100px";
+      }
     </script>
-</body>
+  </body>
 </html>
