@@ -6,20 +6,20 @@ $exists = false;
 $wrongPswd = false;
 $userId = '';
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-  // $username = mysqli_real_escape_string($conn,$_POST["username"]); 
-  // $password = mysqli_real_escape_string($conn,$_POST["password"]); 
+  // $username = mysqli_real_escape_string($conn,$_POST["username"]);
+  // $password = mysqli_real_escape_string($conn,$_POST["password"]);
 
   $username = $_POST["username"];
   $password = $_POST["password"];
 
-  $sql = "Select * from users where username='$username'";
+  $sql = "Select * from tbl_users where username='$username'";
   $result = mysqli_query($conn, $sql);
   $num = mysqli_num_rows($result);
   // var_dump($num);
   if ($num == 0) {
     $exists = "User not available";
   } else {
-    $sql = "Select id from users where password='$password'";
+    $sql = "Select id from tbl_users where password='$password'";
     $result = mysqli_query($conn, $sql);
     $num = mysqli_num_rows($result);
 
@@ -60,24 +60,24 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <body class="hold-transition login-page">
   <?php
   if ($exists) {
-    echo ' <div class="alert alert-danger 
+    echo ' <div class="alert alert-danger
         alert-dismissible fade show" role="alert">
 
     <strong>Error!</strong> ' . $exists . '
-    <button type="button" class="close" 
-        data-dismiss="alert" aria-label="Close"> 
-        <span aria-hidden="true">×</span> 
+    <button type="button" class="close"
+        data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">×</span>
     </button>
    </div> ';
   }
   if ($wrongPswd) {
-    echo ' <div class="alert alert-danger 
+    echo ' <div class="alert alert-danger
       alert-dismissible fade show" role="alert">
 
   <strong>Error!</strong> ' . $wrongPswd . '
-  <button type="button" class="close" 
-      data-dismiss="alert" aria-label="Close"> 
-      <span aria-hidden="true">×</span> 
+  <button type="button" class="close"
+      data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">×</span>
   </button>
  </div> ';
   }

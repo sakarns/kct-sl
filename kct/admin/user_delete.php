@@ -7,7 +7,7 @@ if(!isset($_SESSION['username']))
 
 if(isset($_GET['id']))
 {
-    $query = " DELETE FROM `users` WHERE id=".$_GET['id'];
+    $query = " DELETE FROM `tbl_users` WHERE id=".$_GET['id'];
     $result = mysqli_query($conn,$query);
     if($result){
         header('location:user_mgmt.php?deletion=success');

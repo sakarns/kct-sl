@@ -29,14 +29,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   } elseif (!preg_match('/^[a-zA-Z0-9_]+$/', trim($_POST["username"]))) {
     $err["username_err"] = "Username can only contain letters, numbers, and underscores.";
   } else {
-    $sql = "SELECT `id` FROM `users` WHERE `username` ='$username'";
+    $sql = "SELECT `id` FROM `tbl_users` WHERE `username` ='$username'";
     $result = mysqli_query($conn, $sql);
     $num = mysqli_num_rows($result);
     if ($num > 0) {
       $err["username_err"] = "Username already taken!";
     } else
       $username = trim($_POST['username']);
-     // Close connection statement
+    // Close connection statement
     //  mysqli_close($conn);
   }
 
@@ -71,9 +71,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   if (count($err) == 0) {
 
     if (isset($_POST['hdnId']))
-      $query = "UPDATE `users` SET username='" . $username . "',email='" . $email . "',password='" . $password . "' WHERE id='" . $_POST['hdnId'] . "'";
+      $query = "UPDATE `tbl_users` SET username='" . $username . "',email='" . $email . "',password='" . $password . "' WHERE id='" . $_POST['hdnId'] . "'";
     else
-      $query = "INSERT INTO `users` ( `username`, `password`, `email`) VALUES ('$username', '$password','$email' )";
+      $query = "INSERT INTO `tbl_users` ( `username`, `password`, `email`) VALUES ('$username', '$password','$email' )";
 
     $result = mysqli_query($conn, $query);
     //var_dump($result);
@@ -90,7 +90,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $id = $_GET['id'];
     // var_dump($id);
     // exit;
-    $query = "SELECT username, email FROM `users` WHERE id=" . $id;
+    $query = "SELECT username, email FROM `tbl_users` WHERE id=" . $id;
     $result = mysqli_query($conn, $query);
     if (mysqli_num_rows($result) > 0) {
       while ($row = mysqli_fetch_array($result)) {
@@ -107,7 +107,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
   <!-- Preloader -->
   <div class="preloader flex-column justify-content-center align-items-center">
-    <img class="animation__shake" src="/kct/dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60">
+    <img class="animation__shake" src="../dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60">
   </div>
 
   <!-- Navbar -->
@@ -283,7 +283,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                     <?php
                     $sn = 1;
-                    $query = "SELECT a.id,a.username,a.email,a.is_active,b.id as emp_profile_id FROM `users` a LEFT JOIN `employee_profile` b ON b.tbl_users_id= a.id order by id DESC";
+                    $query = "SELECT a.id,a.username,a.email,a.is_active,b.id as emp_profile_id FROM `tbl_users` a LEFT JOIN `employee_profile` b ON b.tbl_users_id= a.id order by id DESC";
                     $result = mysqli_query($conn, $query);
                     if (mysqli_num_rows($result) > 0) {
                       while ($row = mysqli_fetch_array($result)) {

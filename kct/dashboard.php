@@ -7,10 +7,10 @@ include_once("config/connection.php");
 ?>
 <div class="wrapper">
 
-  <!-- Preloader
+  Preloader
   <div class="preloader flex-column justify-content-center align-items-center">
     <img class="animation__shake" src="/kct/dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60">
-  </div> -->
+  </div>
 
   <!-- Navbar -->
   <nav class="main-header navbar navbar-expand navbar-white navbar-light">
@@ -79,7 +79,6 @@ include_once("config/connection.php");
           </thead>
           <tbody>
             <?php
-            $sn = 1;
             $query = "SELECT username,email,is_active,id FROM `tbl_users`order by id DESC";
             $result = mysqli_query($conn, $query);
             if (mysqli_num_rows($result) > 0) {
@@ -87,14 +86,14 @@ include_once("config/connection.php");
                 echo
                 "<tr>
 
-                      <td>" . $sn . "</td>
+                      <td>" . $row['id'] . "</td>
                       <td>" . $row['username'] . "</td>
                       <td>" . $row['email'] . "</td>
                       <td>
                       <input type='checkbox'" . (($row['is_active'] == '1') ? 'checked' : '') . ">
                       </td>
                       <td>
-                      <a href='dashboard.php?id=" . $row['id'] . "'id='btnEditUser_" . $row['id'] . "'>
+                      <a href='user_mgmt.php?id=" . $row['id'] . "'id='btnEditUser_" . $row['id'] . "'>
                       <i class='fas fa-edit' style='color:#6b8fcc;'></i>
                       </a>
                       <a href='delete_user.php?id= " . $row['id'] . " ' id='btnDeleteUser'>
@@ -103,7 +102,6 @@ include_once("config/connection.php");
                       </td>
                       <td><a href='/SL/user_details.php' id='btnCreateProfile" . $row['id'] . "'><button id='goToProfile' class='btn btn-primary btn-block' data-id='" . $row['id'] . "' data-user='" . $row['username'] . "'>Create Profile</button></a></td>
                     </tr>";
-                $sn++;
               }
             }
             ?>

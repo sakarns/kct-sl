@@ -19,7 +19,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   if (empty(trim($_POST["username"]))) {
     $username_err = "Please enter a username.";
   } else {
-    $sql = "SELECT `id` FROM `users` WHERE `username` ='$username'";
+    $sql = "SELECT `id` FROM `tbl_users` WHERE `username` ='$username'";
     $result = mysqli_query($conn, $sql);
     $num = mysqli_num_rows($result);
     if ($num > 0) {
@@ -64,7 +64,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     empty($confirm_password_err && empty($email_err))
   ) {
 
-    $query = "INSERT INTO `users` ( `username`, 
+    $query = "INSERT INTO `tbl_users` ( `username`, 
         `password`, `email`) VALUES ('$username', 
         '$password','$email' )";
     $result = mysqli_query($conn, $query);

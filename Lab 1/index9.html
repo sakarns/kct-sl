@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Event Bubbling and Regular Expressions</title>
+  </head>
+  <body>
+    <div id="outerDiv" style="border: 2px solid red;">
+      <div id="innerDiv" style="border: 2px solid black; margin: 20px; text-align: center;" >
+        <button id="myButton">Click Me!</button>
+      </div>
+    </div>
+
+    <form id="myForm" style="margin-top: 10px;">
+      <input type="text"  id="nameInput" placeholder="Enter your name" />
+      <input type="submit" value="Submit" />
+    </form>
+
+    <script>
+      // Event Bubbling Example
+      const outerDiv = document.getElementById("outerDiv");
+      const innerDiv = document.getElementById("innerDiv");
+      const myButton = document.getElementById("myButton");
+
+      outerDiv.addEventListener("click", function () {
+        console.log("Outer div clicked");
+      });
+
+      innerDiv.addEventListener("click", function () {
+        console.log("Inner div clicked");
+      });
+
+      myButton.addEventListener("click", function (event) {
+        event.stopPropagation();
+        console.log("Button clicked");
+      });
+
+      // Regular Expression Example
+      const nameInput = document.getElementById("nameInput");
+
+      nameInput.addEventListener("keyup", function () {
+        const name = nameInput.value;
+        const regex = /^[A-Za-z\s]+$/; // Only allows alphabets and spaces
+
+        if (!regex.test(name)) {
+          nameInput.style.borderColor = "red";
+        } else {
+          nameInput.style.borderColor = "initial";
+        }
+      });
+
+      // Form Handling Example
+      const myForm = document.getElementById("myForm");
+
+      myForm.addEventListener("submit", function (event) {
+        event.preventDefault();
+
+        const name = nameInput.value;
+
+        if (name) {
+          console.log("Form submitted successfully!");
+          myForm.reset();
+        } else {
+          console.log("Please enter your name!");
+        }
+      });
+    </script>
+  </body>
+</html>
